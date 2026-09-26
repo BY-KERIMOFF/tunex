@@ -1,5 +1,6 @@
 package com.neoplay.radio.ui.tv
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,8 +22,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.neoplay.radio.data.model.Station
@@ -71,12 +77,22 @@ fun TvHomeScreen(
                 "Spain" to "🇪🇸"
             )
             items(tvCountries) { (cat, flag) ->
+                var isFocused by remember { mutableStateOf(false) }
+
                 Card(
                     modifier = Modifier
                         .height(90.dp)
+                        .onFocusChanged { isFocused = it.isFocused }
+                        .border(
+                            width = if (isFocused) 3.dp else 0.dp,
+                            color = if (isFocused) MaterialTheme.colorScheme.primary else Color.Transparent,
+                            shape = RoundedCornerShape(16.dp)
+                        )
                         .clickable { onCategoryClick(cat) },
                     shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                    colors = CardDefaults.cardColors(
+                        containerColor = if (isFocused) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surface
+                    )
                 ) {
                     Row(
                         modifier = Modifier.padding(horizontal = 24.dp, vertical = 20.dp),
@@ -103,19 +119,29 @@ fun TvHomeScreen(
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(uiState.topStations) { station ->
+                    var isFocused by remember { mutableStateOf(false) }
+
                     Card(
                         modifier = Modifier
                             .height(120.dp)
                             .fillMaxWidth(0.35f)
+                            .onFocusChanged { isFocused = it.isFocused }
+                            .border(
+                                width = if (isFocused) 3.dp else 0.dp,
+                                color = if (isFocused) MaterialTheme.colorScheme.primary else Color.Transparent,
+                                shape = RoundedCornerShape(16.dp)
+                            )
                             .clickable { onStationClick(station) },
                         shape = RoundedCornerShape(16.dp),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                        colors = CardDefaults.cardColors(
+                            containerColor = if (isFocused) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surface
+                        )
                     ) {
                         Column(
                             modifier = Modifier.padding(16.dp),
                             verticalArrangement = Arrangement.Center
                         ) {
-                            Text(text = station.displayTitle, style = MaterialTheme.typography.titleMedium)
+                            Text(text = station.displayTitle, style = MaterialTheme.typography.titleMedium, maxLines = 1)
                             Text(text = station.country, style = MaterialTheme.typography.bodyMedium)
                         }
                     }
