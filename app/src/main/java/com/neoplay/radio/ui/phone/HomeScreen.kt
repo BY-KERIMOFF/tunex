@@ -14,13 +14,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -42,49 +39,6 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
-
-    val update = uiState.updateInfo
-    if (update != null && update.hasUpdate) {
-        AlertDialog(
-            onDismissRequest = { viewModel.dismissUpdate() },
-            title = {
-                Text(
-                    text = "Yeni Yenilənmə Var! (${update.latestVersion})",
-                    style = MaterialTheme.typography.titleLarge
-                )
-            },
-            text = {
-                Column {
-                    Text(
-                        text = "Tətbiqin yeni versiyası mövcuddur. İndi yeniləmək istəyirsiniz?",
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                    if (update.releaseNotes.isNotBlank()) {
-                        Text(
-                            text = "\nYeniliklər:\n${update.releaseNotes}",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-                        )
-                    }
-                }
-            },
-            confirmButton = {
-                Button(
-                    onClick = {
-                        viewModel.openUpdateUrl(update.downloadUrl)
-                        viewModel.dismissUpdate()
-                    }
-                ) {
-                    Text("Yenilə / Update")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { viewModel.dismissUpdate() }) {
-                    Text("Sonra")
-                }
-            }
-        )
-    }
 
     if (uiState.isLoading) {
         LoadingIndicator()

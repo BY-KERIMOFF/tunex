@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Category
@@ -23,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.neoplay.radio.ui.components.MiniPlayer
 import com.neoplay.radio.ui.navigation.NavGraph
 import com.neoplay.radio.ui.navigation.Screen
 import com.neoplay.radio.ui.theme.NeoRadioTheme
@@ -41,6 +43,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val themeSetting by settingsViewModel.theme.collectAsState()
             val currentStation by playerViewModel.currentStation.collectAsState()
+            val playerStatus by playerViewModel.playerStatus.collectAsState()
 
             NeoRadioTheme(themeSetting = themeSetting) {
                 val navController = rememberNavController()
@@ -50,31 +53,43 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     bottomBar = {
                         if (currentRoute != Screen.Player.route) {
-                            NavigationBar {
-                                val items = listOf(
-                                    Screen.Home to (R.string.tab_home to Icons.Default.Home),
-                                    Screen.Categories to (R.string.tab_categories to Icons.Default.Category),
-                                    Screen.Search to (R.string.tab_search to Icons.Default.Search),
-                                    Screen.Favorites to (R.string.tab_favorites to Icons.Default.Favorite),
-                                    Screen.Settings to (R.string.tab_settings to Icons.Default.Settings)
-                                )
-
-                                items.forEach { (screen, info) ->
-                                    val (titleRes, icon) = info
-                                    NavigationBarItem(
-                                        selected = currentRoute == screen.route,
-                                        onClick = {
-                                            if (currentRoute != screen.route) {
-                                                navController.navigate(screen.route) {
-                                                    popUpTo(Screen.Home.route) { saveState = true }
-                                                    launchSingleTop = true
-                                                    restoreState = true
-                                                }
-                                            }
-                                        },
-                                        icon = { Icon(imageVector = icon, contentDescription = null) },
-                                        label = { Text(text = stringResource(id = titleRes)) }
+                            Column {
+                                if (currentStation != null) {
+                                    MiniPlayer(
+                                        station = currentStation!!,
+                                        playerStatus = playerStatus,
+                                        onPlayPauseClick = { playerViewModel.togglePlayPause() },
+                                        onStopClick = { playerViewModel.stop() },
+                                        onMiniPlayerClick = { navController.navigate(Screen.Player.route) }
                                     )
+                                }
+
+                                NavigationBar {
+                                    val items = listOf(
+                                        Screen.Home to (R.string.tab_home to Icons.Default.Home),
+                                        Screen.Categories to (R.string.tab_categories to Icons.Default.Category),
+                                        Screen.Search to (R.string.tab_search to Icons.Default.Search),
+                                        Screen.Favorites to (R.string.tab_favorites to Icons.Default.Favorite),
+                                        Screen.Settings to (R.string.tab_settings to Icons.Default.Settings)
+                                    )
+
+                                    items.forEach { (screen, info) ->
+                                        val (titleRes, icon) = info
+                                        NavigationBarItem(
+                                            selected = currentRoute == screen.route,
+                                            onClick = {
+                                                if (currentRoute != screen.route) {
+                                                    navController.navigate(screen.route) {
+                                                        popUpTo(Screen.Home.route) { saveState = true }
+                                                        launchSingleTop = true
+                                                        restoreState = true
+                                                    }
+                                                }
+                                            },
+                                            icon = { Icon(imageVector = icon, contentDescription = null) },
+                                            label = { Text(text = stringResource(id = titleRes)) }
+                                        )
+                                    }
                                 }
                             }
                         }
