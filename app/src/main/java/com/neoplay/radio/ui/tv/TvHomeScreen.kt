@@ -67,7 +67,7 @@ fun TvHomeScreen(
         ) {
             val tvCountries = listOf(
                 "Azerbaijan" to "🇦🇿",
-                "Turkey" to "🇹🇷",
+                "Türkiye" to "🇹🇷",
                 "Russia" to "🇷🇺",
                 "United States" to "🇺🇸",
                 "United Kingdom" to "🇬🇧",
