@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.NeoRadio" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@color/dark_bg</item>
+        <item name="android:navigationBarColor">@color/dark_bg</item>
+    </style>
+</resources>

@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Neo Radio</string>
+    <string name="tab_home">Ana Səhifə</string>
+    <string name="tab_categories">Kateqoriyalar</string>
+    <string name="tab_favorites">Sevilənlər</string>
+    <string name="tab_search">Axtarış</string>
+    <string name="tab_settings">Tənzimləmələr</string>
+
+    <string name="popular_countries">Populyar Ölkələr</string>
+    <string name="popular_genres">Populyar Janrlar</string>
+    <string name="popular_stations">Populyar Radiolar</string>
+    <string name="all_stations">Bütün Radiolar</string>
+    <string name="no_stations_found">Heç bir radio stansiyası tapılmadı</string>
+    <string name="search_placeholder">Radio adı, ölkə və ya janr axtar...</string>
+    <string name="favorites_empty">Hələ ki, sevimli radio əlavə edilməyib</string>
+
+    <string name="player_playing">Səslənir</string>
+    <string name="player_buffering">Yüklənir...</string>
+    <string name="player_paused">Dayandırıldı</string>
+
+    <string name="sleep_timer">Yuxu Taymeri</string>
+    <string name="sleep_timer_off">Söndürülüb</string>
+    <string name="sleep_timer_15m">15 Dəqiqə</string>
+    <string name="sleep_timer_30m">30 Dəqiqə</string>
+    <string name="sleep_timer_60m">60 Dəqiqə</string>
+    <string name="sleep_timer_90m">90 Dəqiqə</string>
+    <string name="sleep_timer_set">Yuxu taymeri %d dəqiqəyə quruldu</string>
+    <string name="sleep_timer_cancelled">Yuxu taymeri ləğv edildi</string>
+
+    <string name="settings_api_url">API URL Adresi</string>
+    <string name="settings_theme">Mövzu</string>
+    <string name="settings_language">Dil</string>
+    <string name="settings_clear_cache">Keşi təmizlə</string>
+    <string name="settings_cache_cleared">Keş uğurla təmizləndi</string>
+    <string name="theme_dark">Tünd</string>
+    <string name="theme_light">Açıq</string>
+    <string name="theme_system">Sistem susmaya görə</string>
+
+    <string name="country_azerbaijan">Azərbaycan</string>
+    <string name="country_turkey">Türkiyə</string>
+    <string name="country_germany">Almaniya</string>
+    <string name="country_usa">ABŞ</string>
+    <string name="country_uk">Böyük Britaniya</string>
+</resources>

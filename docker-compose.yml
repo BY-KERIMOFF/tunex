@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env.example
+    depends_on:
+      - redis
+      - go-proxy
+    restart: unless-stopped
+    environment:
+      - GO_PROXY_HOST=go-proxy
+      - GO_PROXY_PORT=8001
+      - REDIS_URL=redis://redis:6379/0
+
+  go-proxy:
+    build:
+      context: ./backend/go-proxy
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - GO_PROXY_HOST=0.0.0.0
+      - GO_PROXY_PORT=8001
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:

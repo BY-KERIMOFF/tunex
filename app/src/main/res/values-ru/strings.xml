@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Neo Radio</string>
+    <string name="tab_home">Главная</string>
+    <string name="tab_categories">Категории</string>
+    <string name="tab_favorites">Избранное</string>
+    <string name="tab_search">Поиск</string>
+    <string name="tab_settings">Настройки</string>
+
+    <string name="popular_countries">Популярные страны</string>
+    <string name="popular_genres">Популярные жанры</string>
+    <string name="popular_stations">Популярные радиостанции</string>
+    <string name="all_stations">Все радиостанции</string>
+    <string name="no_stations_found">Радиостанции не найдены</string>
+    <string name="search_placeholder">Поиск по названию, стране или жанру...</string>
+    <string name="favorites_empty">Избранные радиостанции еще не добавлены</string>
+
+    <string name="player_playing">Воспроизводится</string>
+    <string name="player_buffering">Загрузка...</string>
+    <string name="player_paused">Приостановлено</string>
+
+    <string name="sleep_timer">Таймер сна</string>
+    <string name="sleep_timer_off">Выкл</string>
+    <string name="sleep_timer_15m">15 Минут</string>
+    <string name="sleep_timer_30m">30 Минут</string>
+    <string name="sleep_timer_60m">60 Минут</string>
+    <string name="sleep_timer_90m">90 Минут</string>
+    <string name="sleep_timer_set">Таймер сна установлен на %d минут</string>
+    <string name="sleep_timer_cancelled">Таймер сна отменен</string>
+
+    <string name="settings_api_url">URL-адрес API</string>
+    <string name="settings_theme">Тема</string>
+    <string name="settings_language">Язык</string>
+    <string name="settings_clear_cache">Очистить кэш</string>
+    <string name="settings_cache_cleared">Кэш успешно очищен</string>
+    <string name="theme_dark">Темная</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_system">Системная</string>
+
+    <string name="country_azerbaijan">Азербайджан</string>
+    <string name="country_turkey">Турция</string>
+    <string name="country_germany">Германия</string>
+    <string name="country_usa">США</string>
+    <string name="country_uk">Великобритания</string>
+</resources>

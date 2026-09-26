@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Radio Outer Body -->
+    <path
+        android:pathData="M30,42 h48 a6,6 0 0,1 6,6 v28 a6,6 0 0,1 -6,6 h-48 a6,6 0 0,1 -6,-6 v-28 a6,6 0 0,1 6,-6 z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="30"
+                android:startY="42"
+                android:endX="84"
+                android:endY="82"
+                android:type="linear">
+                <item android:color="#9D4EDD" android:offset="0.0" />
+                <item android:color="#00E5FF" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Antenna -->
+    <path
+        android:pathData="M40,42 L65,24"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:strokeColor="#00E5FF" />
+
+    <!-- Speaker Grill Circles -->
+    <path
+        android:pathData="M42,62 m-10,0 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0"
+        android:fillColor="#150B28" />
+
+    <!-- Radio Dial Knobs -->
+    <path
+        android:pathData="M66,54 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+        android:fillColor="#150B28" />
+
+    <path
+        android:pathData="M66,68 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+        android:fillColor="#150B28" />
+
+    <!-- Equalizer / Wave Bars above Radio -->
+    <path
+        android:pathData="M34,34 v-4 M42,34 v-8 M50,34 v-12 M58,34 v-6 M66,34 v-10 M74,34 v-4"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeColor="#00E5FF" />
+</vector>

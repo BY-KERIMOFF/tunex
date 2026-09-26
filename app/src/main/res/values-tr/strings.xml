@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Neo Radio</string>
+    <string name="tab_home">Ana Sayfa</string>
+    <string name="tab_categories">Kategoriler</string>
+    <string name="tab_favorites">Favoriler</string>
+    <string name="tab_search">Arama</string>
+    <string name="tab_settings">Ayarlar</string>
+
+    <string name="popular_countries">Popüler Ülkeler</string>
+    <string name="popular_genres">Popüler Türler</string>
+    <string name="popular_stations">Popüler Radyolar</string>
+    <string name="all_stations">Tüm Radyolar</string>
+    <string name="no_stations_found">Radyo istasyonu bulunamadı</string>
+    <string name="search_placeholder">Radyo adı, ülke veya tür ara...</string>
+    <string name="favorites_empty">Henüz favori radyo eklenmedi</string>
+
+    <string name="player_playing">Çalıyor</string>
+    <string name="player_buffering">Yükleniyor...</string>
+    <string name="player_paused">Duraklatıldı</string>
+
+    <string name="sleep_timer">Uyku Zamanlayıcı</string>
+    <string name="sleep_timer_off">Kapalı</string>
+    <string name="sleep_timer_15m">15 Dakika</string>
+    <string name="sleep_timer_30m">30 Dakika</string>
+    <string name="sleep_timer_60m">60 Dakika</string>
+    <string name="sleep_timer_90m">90 Dakika</string>
+    <string name="sleep_timer_set">Uyku zamanlayıcısı %d dakikaya ayarlandı</string>
+    <string name="sleep_timer_cancelled">Uyku zamanlayıcısı iptal edildi</string>
+
+    <string name="settings_api_url">API URL Adresi</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_language">Dil</string>
+    <string name="settings_clear_cache">Önbelleği Temizle</string>
+    <string name="settings_cache_cleared">Önbellek başarıyla temizlendi</string>
+    <string name="theme_dark">Karanlık</string>
+    <string name="theme_light">Aydınlık</string>
+    <string name="theme_system">Sistem Varsayılanı</string>
+
+    <string name="country_azerbaijan">Azerbaycan</string>
+    <string name="country_turkey">Türkiye</string>
+    <string name="country_germany">Almanya</string>
+    <string name="country_usa">ABD</string>
+    <string name="country_uk">İngiltere</string>
+</resources>
