@@ -25,9 +25,20 @@ android {
         buildConfigField("String", "DEFAULT_API_BASE_URL", "\"https://3bneoplay65.xyz/radio/\"")
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("${rootDir}/release.keystore")
+            storePassword = "NeoRadio2026"
+            keyAlias = "neoradio"
+            keyPassword = "NeoRadio2026"
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
