@@ -28,32 +28,51 @@ class UpdateChecker @Inject constructor(
     }
 
     suspend fun checkForUpdates(): UpdateInfo = withContext(Dispatchers.IO) {
+        val currentVer = BuildConfig.VERSION_NAME.trim()
+
+        // 1. Try Releases API
         try {
             val release = githubApi.getLatestRelease()
             val rawTag = release.tagName.orEmpty().removePrefix("v").trim()
-            val currentVer = BuildConfig.VERSION_NAME.trim()
+            if (rawTag.isNotBlank()) {
+                val hasUpdate = isVersionNewer(currentVer, rawTag)
+                val downloadUrl = release.assets?.firstOrNull { it.name?.endsWith(".apk") == true }?.browserDownloadUrl
+                    ?: release.htmlUrl
+                    ?: "https://github.com/BY-KERIMOFF/tunex/releases"
 
-            val hasUpdate = isVersionNewer(currentVer, rawTag)
-            val downloadUrl = release.assets?.firstOrNull { it.name?.endsWith(".apk") == true }?.browserDownloadUrl
-                ?: release.htmlUrl
-                ?: "https://github.com/BY-KERIMOFF/tunex/releases"
+                return@withContext UpdateInfo(
+                    hasUpdate = hasUpdate,
+                    latestVersion = rawTag,
+                    currentVersion = currentVer,
+                    downloadUrl = downloadUrl,
+                    releaseNotes = release.body.orEmpty().ifBlank { "Yeni yenilənmə mövcuddur!" }
+                )
+            }
+        } catch (_: Exception) {}
 
-            UpdateInfo(
-                hasUpdate = hasUpdate,
-                latestVersion = rawTag.ifBlank { "v1.0.0" },
-                currentVersion = currentVer,
-                downloadUrl = downloadUrl,
-                releaseNotes = release.body.orEmpty().ifBlank { "Yeni yenilənmə mövcuddur!" }
-            )
-        } catch (e: Exception) {
-            UpdateInfo(
-                hasUpdate = false,
-                latestVersion = BuildConfig.VERSION_NAME,
-                currentVersion = BuildConfig.VERSION_NAME,
-                downloadUrl = "",
-                releaseNotes = ""
-            )
-        }
+        // 2. Fallback to Tags API
+        try {
+            val tags = githubApi.getTags()
+            val latestTag = tags.firstOrNull()?.name?.removePrefix("v")?.trim().orEmpty()
+            if (latestTag.isNotBlank()) {
+                val hasUpdate = isVersionNewer(currentVer, latestTag)
+                return@withContext UpdateInfo(
+                    hasUpdate = hasUpdate,
+                    latestVersion = latestTag,
+                    currentVersion = currentVer,
+                    downloadUrl = "https://github.com/BY-KERIMOFF/tunex/releases",
+                    releaseNotes = "Yeni versiya mövcuddur! (v$latestTag)"
+                )
+            }
+        } catch (_: Exception) {}
+
+        UpdateInfo(
+            hasUpdate = false,
+            latestVersion = currentVer,
+            currentVersion = currentVer,
+            downloadUrl = "",
+            releaseNotes = ""
+        )
     }
 
     fun openUpdateUrl(url: String) {
